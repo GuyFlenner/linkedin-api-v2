@@ -2,6 +2,10 @@ module LinkedinV2
   module Helpers
     module Hash
       class << self
+        def get_deep(hash, *fields)
+          fields.inject(hash) {|acc,e| acc[e] if acc.is_a?(::Hash)}
+        end
+
         def deep_merge(first, second)
           first.merge(second.to_h, &merger)
         end
