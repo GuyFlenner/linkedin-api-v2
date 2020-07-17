@@ -7,5 +7,23 @@ module LinkedinV2
 
         request(:post, path, body.to_json, post_headers)
       end
+
+      def upload_asset(**options)
+        registerAssetUploadResponse = register_asset_upload(options)
+        uploadUrl = LinkedinV2::Helpers::Hash.get_deep(
+          registerAssetUploadResponse,
+          "value",
+          "uploadMechanism",
+          "com.linkedin.digitalmedia.uploading.MediaUploadHttpRequest",
+          "uploadUrl"
+        )
+        file = Files::Creator.(options[:asset_url])
+        body = file
+
+        request(:put, nil, body, post_headers, uploadUrl, nil)
+      ensure
+        Files::Destroyer.(file)
+      end
+    end
   end
 end
