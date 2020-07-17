@@ -1,6 +1,7 @@
 require_relative "api/organizations"
 require_relative "api/profiles"
 require_relative "api/medias"
+require_relative "api/assets"
 
 module LinkedinV2
   class Client
@@ -8,6 +9,7 @@ module LinkedinV2
     include LinkedinV2::Api::Organizations
     include LinkedinV2::Api::Profiles
     include LinkedinV2::Api::Medias
+    include LinkedinV2::Api::Assets
 
     attr_reader :token
 

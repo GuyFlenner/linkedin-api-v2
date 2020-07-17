@@ -47,6 +47,10 @@ module LinkedinV2
         Response[__method__]
       end
 
+      def register_asset_upload
+        Response[__method__]
+      end
+
       # 'projection' - query to get specific attributes - optional
       def me(projection: nil)
         Response[__method__, { projection: projection }]
